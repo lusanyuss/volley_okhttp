@@ -22,15 +22,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        final String urlString2 = "http://api.uhouzz.com/uhouzz2.8/index.php" + "/wechatapp/Region/index";
-        final Map<String, String> params2 = new HashMap<String, String>();
+        final String url = "http://api.uhouzz.com/uhouzz2.8/index.php/wechatapp/Region/index";
+        final Map<String, String> params = new HashMap<String, String>();
 
         MyVolley.addRequest(
-                new CustomRequest(urlString2, params2,
+                new CustomRequest(url, params,
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
-                                Log.v("", response.toString());
+                                Log.v("yuliu", response.toString());
                                 /**************** ui代码 *****************/
                             }
                         }, new Response.ErrorListener() {
@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
                         // stub
                     }
                 }));
-
 
     }
 }
