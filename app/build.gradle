@@ -8,24 +8,96 @@ android {
         applicationId "com.yuliu.volley_okhttp"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
     }
-    buildTypes {
+
+    signingConfigs {
         release {
+            storeFile file('key')
+            storePassword '123456'
+            keyAlias 'uhouzz_android'
+            keyPassword '123456'
+        }
+        debug {
+            storeFile file('key')
+            storePassword '123456'
+            keyAlias 'uhouzz_android'
+            keyPassword '123456'
+        }
+    }
+
+    buildTypes {
+        debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
     }
+
+
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
+
+    // 移除lint检查的error
+    lintOptions {
+        abortOnError false
+    }
+    aaptOptions {
+        noCompress 'apk'
+    }
+
+
+    productFlavors {
+
+        //测试渠道
+//        uhouzz_test {}
+        //平台渠道
+        yingyongbao {}
+        qh360 {}
+        xiaomi {}
+        huawei {}
+        wandoujia {}
+        letv {}
+        google_play {}
+        baidu {}
+        //应用宝推广微下载渠道
+        dongwanfenxiao {}
+        ouwenfenxiao {}
+        wengehuafun {}
+        zouxudong {}
+        fengshuai {}
+        zhaopengjun {}
+        fanghaoyou {}
+        zhaoguoxin {}
+
+        productFlavors.all { flavor ->
+            flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+        }
+    }
+
+
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
 
     compile 'com.mcxiaoke.volley:library:1.0.18'
     compile 'com.google.code.gson:gson:2.3.1'
+    compile 'com.mcxiaoke.volley:library:1.0.18'
+    compile 'com.facebook.fresco:fresco:0.6.1'
+    compile 'de.greenrobot:eventbus:2.4.0'
+    compile 'com.jakewharton:butterknife:7.0.1'
 
 //    compile 'com.facebook.stetho:stetho:1.1.1'
 //    compile 'com.facebook.stetho:stetho-okhttp:1.1.1'
@@ -39,6 +111,5 @@ dependencies {
 //    compile 'com.squareup.okio:okio:1.5.0'
 
 
-
-
 }
+
