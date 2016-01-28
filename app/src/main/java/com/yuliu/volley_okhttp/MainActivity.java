@@ -7,6 +7,8 @@ import android.util.Log;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,19 +21,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final String urlString2 = "/wechatapp/Region/index";
+
+        final String urlString2 = "http://api.uhouzz.com/uhouzz2.8/index.php" + "/wechatapp/Region/index";
         final Map<String, String> params2 = new HashMap<String, String>();
 
         MyVolley.addRequest(
-                new CustomRequest("http://api.uhouzz.com/uhouzz2.8/index.php" + urlString2, JsonModel.class, params2,
-                        new Response.Listener<JsonModel>() {
+                new CustomRequest(urlString2, params2,
+                        new Response.Listener<JSONObject>() {
                             @Override
-                            public void onResponse(JsonModel response) {
-                                Log.v(TAG, response.code+"");
+                            public void onResponse(JSONObject response) {
+                                Log.v("", response.toString());
+                                /**************** ui代码 *****************/
                             }
                         }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        // stub
                     }
                 }));
 
