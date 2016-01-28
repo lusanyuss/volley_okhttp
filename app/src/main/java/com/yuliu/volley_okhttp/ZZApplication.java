@@ -13,8 +13,8 @@ public class ZZApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        mInstance = this;
         MyVolley.init(this);
+        mInstance = this;
     }
 
 
