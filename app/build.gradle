@@ -14,13 +14,13 @@ android {
         release {
             storeFile file('key')
             storePassword '123456'
-            keyAlias 'uhouzz_android'
+            keyAlias 'test_android'
             keyPassword '123456'
         }
         debug {
             storeFile file('key')
             storePassword '123456'
-            keyAlias 'uhouzz_android'
+            keyAlias 'test_android'
             keyPassword '123456'
         }
     }
