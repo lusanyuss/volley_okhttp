@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final String url = "http://api.uhouzz.com/uhouzz2.8/index.php/wechatapp/Region/index";
+       
         final Map<String, String> params = new HashMap<String, String>();
 
         MyVolley.addRequest(
@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
-                                Log.v("yuliu", response.toString());
                                 /**************** ui代码 *****************/
                             }
                         }, new Response.ErrorListener() {
